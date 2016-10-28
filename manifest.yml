@@ -1,0 +1,11 @@
+applications:
+- name: railsapp
+  command: bundle exec rake cf:on_first_instance db:migrate && rails s -p $PORT
+  instances: 1
+  memory: 256M
+  disk_quota: 512M
+  routes:
+  - route: railsapp.local.pcfdev.io
+  services:
+  - railsdb
+  stack: cflinuxfs2
